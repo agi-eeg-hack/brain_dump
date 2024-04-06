@@ -3,7 +3,7 @@ from io import TextIOWrapper
 import json
 import os
 from pathlib import Path
-from typing import Callable, Generator, Iterator, NamedTuple
+from typing import Callable, Generator, Iterator, NamedTuple, TypeVar
 from .neurosity_types import NeurosityDatapoint, NeurosityDatasetMeta
 
 import cattrs
@@ -63,3 +63,15 @@ def process_datasets_in_parent(
         if dataset.meta.valid:
             with open(dataset.path, "r") as f:
                 callback(dataset, NeurosityCSVReader(f))
+
+
+A = TypeVar("A")
+
+
+def window(iterator: Iterator[A], window_size: int) -> Generator[list[A], None, None]:
+    window_data = []
+    for i, item in enumerate(iterator):
+        window_data.append(item)
+        if i >= window_size:
+            yield window_data
+            window_data.pop(0)

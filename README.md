@@ -25,7 +25,7 @@ def process_datapoint(
         dataset: NeurosityDataset, data: Iterator[NeurosityDatapoint]
 ) -> None:
     print(f"Processing {dataset.name} of subject {dataset.meta.anonymousSubjectId}")
-    for datum in data:
+    for datum in window(data, 10):
         print(datum)
 
 process_datasets_in_parent(
@@ -40,6 +40,6 @@ with open(
     "/Users/lund/Documents/sessions/vEmgKzwF9WVEYvF8IQxC/dataset.csv", "r"
 ) as f:
     reader = NeurosityCSVReader(f)
-    for row in reader:
+    for row in window(reader, 10):
         print(row)
 ```
