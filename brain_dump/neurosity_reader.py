@@ -9,28 +9,6 @@ from .neurosity_types import NeurosityDatapoint, NeurosityDatasetMeta
 import cattrs
 
 
-def example():
-    def process_datapoint(
-        dataset: NeurosityDataset, data: Iterator[NeurosityDatapoint]
-    ) -> None:
-        print(f"Processing {dataset.name} of subject {dataset.meta.anonymousSubjectId}")
-        for datum in data:
-            print(datum)
-
-    process_datasets_in_parent(
-        Path("/Users/lund/Documents/sessions/"), process_datapoint
-    )
-
-
-def example2():
-    with open(
-        "/Users/lund/Documents/sessions/vEmgKzwF9WVEYvF8IQxC/dataset.csv", "r"
-    ) as f:
-        reader = NeurosityCSVReader(f)
-        for row in reader:
-            print(row)
-
-
 class NeurosityCSVReader(DictReader):
     def __init__(self, file: TextIOWrapper) -> None:
         super().__init__(

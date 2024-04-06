@@ -15,3 +15,31 @@ python -m venv .venv --prompt brain_dump # Use python 3.11 (others at own risk)
 pip install pip-tools
 pip-sync
 ```
+
+# Reading neurosity data
+
+## Everything in a parent dir
+
+```
+def process_datapoint(
+        dataset: NeurosityDataset, data: Iterator[NeurosityDatapoint]
+) -> None:
+    print(f"Processing {dataset.name} of subject {dataset.meta.anonymousSubjectId}")
+    for datum in data:
+        print(datum)
+
+process_datasets_in_parent(
+    Path("/Users/lund/Documents/sessions/"), process_datapoint
+)
+```
+
+## A specific file
+
+```
+with open(
+    "/Users/lund/Documents/sessions/vEmgKzwF9WVEYvF8IQxC/dataset.csv", "r"
+) as f:
+    reader = NeurosityCSVReader(f)
+    for row in reader:
+        print(row)
+```
