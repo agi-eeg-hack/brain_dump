@@ -6,14 +6,24 @@
 #
 -e file:///Users/lund/dev/neurosity-sdk-python
     # via -r requirements.in
+attrs==23.2.0
+    # via
+    #   -r requirements.in
+    #   cattrs
+black==24.3.0
+    # via -r requirements.in
 cachetools==5.3.3
     # via google-auth
+cattrs==23.2.3
+    # via -r requirements.in
 certifi==2024.2.2
     # via requests
 cffi==1.16.0
     # via cryptography
 charset-normalizer==3.3.2
     # via requests
+click==8.1.7
+    # via black
 cryptography==42.0.5
     # via jwcrypto
 firebase-rest-api==1.11.0
@@ -58,8 +68,20 @@ idna==3.6
     # via requests
 jwcrypto==1.5.6
     # via python-jwt
+mypy==1.9.0
+    # via -r requirements.in
+mypy-extensions==1.0.0
+    # via
+    #   black
+    #   mypy
+packaging==24.0
+    # via black
+pathspec==0.12.1
+    # via black
 pkce==1.0.3
     # via firebase-rest-api
+platformdirs==4.2.0
+    # via black
 proto-plus==1.23.0
     # via
     #   google-api-core
@@ -79,6 +101,8 @@ pyasn1-modules==0.4.0
     # via google-auth
 pycparser==2.22
     # via cffi
+python-dotenv==1.0.1
+    # via -r requirements.in
 python-jwt==4.1.0
     # via firebase-rest-api
 requests==2.31.0
@@ -91,6 +115,8 @@ rsa==4.9
 six==1.16.0
     # via firebase-rest-api
 typing-extensions==4.11.0
-    # via jwcrypto
+    # via
+    #   jwcrypto
+    #   mypy
 urllib3==2.2.1
     # via requests

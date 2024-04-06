@@ -1,1 +1,6 @@
 -e ../neurosity-sdk-python
+attrs
+cattrs
+black
+mypy
+python-dotenv
