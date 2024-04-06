@@ -25,6 +25,8 @@ class NeurosityCSVReader(DictReader):
                 "channel_8",
                 "unknown2",
                 "timestamp_sec",
+                "left_fingers_up",
+                "right_fingers_up"
             ],
         )
 

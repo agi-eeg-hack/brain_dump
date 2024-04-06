@@ -1,7 +1,6 @@
-from typing import Any
+from typing import Any, Literal
 from attr import define
 from datetime import datetime
-
 
 @define
 class NeurosityDatapoint:
@@ -16,6 +15,8 @@ class NeurosityDatapoint:
     channel_8: float
     unknown2: Any
     timestamp_sec: float
+    left_fingers_up: Literal[0, 1, 2, 3, 4, 5] | None
+    right_fingers_up: Literal[0, 1, 2, 3, 4, 5] | None
 
     @property
     def python_timestamp(self) -> datetime:
