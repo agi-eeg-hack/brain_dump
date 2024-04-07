@@ -39,7 +39,7 @@ def main() -> None:
 
     with open(dump_path, "w") as f:
         neurosity_writer = NeurosityCSVWriter(f)
-        prompted = False
+        showing = False
         doing = False
         left = None
         right = None
