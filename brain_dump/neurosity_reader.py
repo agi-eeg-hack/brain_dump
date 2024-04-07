@@ -4,7 +4,7 @@ import json
 import os
 from pathlib import Path
 from typing import Callable, Generator, Iterator, NamedTuple, TypeVar
-from .neurosity_types import NeurosityDatapoint, NeurosityDatasetMeta
+from .neurosity_types import FIELDNAMES, NeurosityDatapoint, NeurosityDatasetMeta
 
 import cattrs
 
@@ -13,21 +13,7 @@ class NeurosityCSVReader(DictReader):
     def __init__(self, file: TextIOWrapper) -> None:
         super().__init__(
             file,
-            fieldnames=[
-                "unknown1",
-                "channel_1",
-                "channel_2",
-                "channel_3",
-                "channel_4",
-                "channel_5",
-                "channel_6",
-                "channel_7",
-                "channel_8",
-                "unknown2",
-                "timestamp_sec",
-                "left_fingers_up",
-                "right_fingers_up"
-            ],
+            fieldnames=FIELDNAMES,
         )
 
     def __next__(self):
@@ -70,10 +56,18 @@ def process_datasets_in_parent(
 A = TypeVar("A")
 
 
-def window(iterator: Iterator[A], window_size: int) -> Generator[list[A], None, None]:
-    window_data = []
-    for i, item in enumerate(iterator):
-        window_data.append(item)
-        if i >= window_size:
-            yield window_data
-            window_data.pop(0)
+# def get_chunks(data_folder: Path, count: int, size: int) -> list[list[NeurosityDatapoint]]:
+#     files = [(data_folder / f) for f in os.listdir(data_folder) if (data_folder / f).is_file()]
+#     num_files = len(files)
+#     picks_per_file = [0] * num_files
+#     chunks = []
+#     for _ in range(count):
+#         for i in range(num_files):
+#             if picks_per_file[i] >= size:
+#                 picks_per_file[i] = 0
+#                 continue
+#             with open(files[i], "r") as f:
+#                 reader = NeurosityCSVReader(f)
+#                 chunks.append(reader.read(size))
+#                 picks_per_file[i] += 1
+#     return chunks
