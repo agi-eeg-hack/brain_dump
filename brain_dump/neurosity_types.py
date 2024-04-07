@@ -22,7 +22,7 @@ FIELDNAMES = [
 
 @define
 class NeurosityDatapoint:
-    stddev: int
+    # x
     channel_1: float
     channel_2: float
     channel_3: float
@@ -31,11 +31,19 @@ class NeurosityDatapoint:
     channel_6: float
     channel_7: float
     channel_8: float
-    unknown2: Any
-    timestamp_sec: float
+
+    # y
     left_fingers_up: Literal[0, 1, 2, 3, 4, 5] | None
     right_fingers_up: Literal[0, 1, 2, 3, 4, 5] | None
+
+    unknown2: Any
+    timestamp_sec: float
+    stddev: int
+
+    # moving fingers or have alredy moved
     doing: bool
+
+    # numbers are up on the screen
     showing: bool
 
     @property
